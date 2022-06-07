@@ -1,10 +1,9 @@
-// List the dependencies here.
+
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const consoleTable = require('console.table');
 const util = require('util');
 
-// Create the connection to MySQL WorkBench
 let connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
@@ -15,18 +14,16 @@ let connection = mysql.createConnection({
 
 connection.query = util.promisify(connection.query);
 
-// Begin the application after establishing the connection.
 connection.connect(function (err) {
     if (err) throw err;
     initialAction();
 })
 
-// Give the user a pleasant welcome message.
 console.table(
     "\n------------ EMPLOYEE TRACKER ------------\n"
 )
 
-// Ask the user initial action question to figure out what they would like to do.
+// Ask user what they want to do
 const initialAction = async () => {
     try {
         let answer = await inquirer.prompt({
@@ -83,7 +80,6 @@ const initialAction = async () => {
     };
 }
 
-// Selection to view all of the employees.
 const employeeView = async () => {
     console.log('Employee View');
     try {
@@ -101,7 +97,6 @@ const employeeView = async () => {
     };
 }
 
-// Selection to view all of the departments.
 const departmentView = async () => {
     console.log('Department View');
     try {
@@ -119,7 +114,6 @@ const departmentView = async () => {
     };
 }
 
-// Selection to view all of the roles.
 const roleView = async () => {
     console.log('Role View');
     try {
@@ -137,7 +131,6 @@ const roleView = async () => {
     };
 }
 
-// Selection to add a new employee.
 const employeeAdd = async () => {
     try {
         console.log('Employee Add');
@@ -197,7 +190,6 @@ const employeeAdd = async () => {
     };
 }
 
-// Selection to add a new department.
 const departmentAdd = async () => {
     try {
         console.log('Department Add');
@@ -223,7 +215,6 @@ const departmentAdd = async () => {
     };
 }
 
-// Selection to add a new role.
 const roleAdd = async () => {
     try {
         console.log('Role Add');
@@ -275,7 +266,6 @@ const roleAdd = async () => {
     };
 }
 
-// Selection to update a roll for a specific employee.
 const employeeUpdate = async () => {
     try {
         console.log('Employee Update');
